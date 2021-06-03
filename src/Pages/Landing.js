@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import lolImg from './../images/lol-img.png';
 import { RedButton } from './../Components/RedButton';
 
+import NavBar from './../Components/NavBar';
 import './../styles/landing.css';
 
 function Landing() {
@@ -32,6 +33,7 @@ function Landing() {
                  <Link className="landing-link-modo" to={'/modo'}><RedButton className="landing-redbtn">Modificar preferencias</RedButton></Link>
         </Col>
         </Row>
+        <NavBar></NavBar>
         </Container>
     )
 }
