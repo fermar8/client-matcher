@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import lolImg from './../images/lol-img.png';
 import { RedButton } from './../Components/RedButton';
 
+import NavBar from './../Components/NavBar';
 import './../styles/landing.css';
 
 function Landing() {
@@ -31,6 +32,7 @@ function Landing() {
                  <RedButton className="landing-redbtn">Modificar preferencias</RedButton>
         </Col>
         </Row>
+        <NavBar></NavBar>
         </Container>
     )
 }
