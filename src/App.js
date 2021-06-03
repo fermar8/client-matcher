@@ -5,6 +5,7 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
+import Landing from './Pages/Landing';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
        <Route exact path="/" render={(props) => <Home {...props} />} />
        <Route exact path="/login" render={(props) => <Login {...props} />} />
        <Route exact path="/signup" render={(props) => <Signup {...props} />} />
+       <Route exact path="/landing" render={(props) => <Landing {...props} />} />
      </Switch>
     </GlobalStyle>
   );
