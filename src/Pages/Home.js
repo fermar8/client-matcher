@@ -16,7 +16,7 @@ function Home() {
             
                 <Link to={'/login'}><DarkButton>Inicia sesión</DarkButton></Link>
             
-                <DarkButton>Regístrate</DarkButton>
+                <Link to={'/signup'}><DarkButton>Regístrate</DarkButton></Link>
             </Col>
             <Col xs="1"></Col>
             </Row>
