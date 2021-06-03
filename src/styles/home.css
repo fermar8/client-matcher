@@ -1,0 +1,19 @@
+.home-flex {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title {
+    color: #FF4655;
+    font-size: 50px;
+    margin: 0 0 20px 0;
+}
+
+.home-text {
+    color: #D8D8D8;
+    font-size: 15px;
+    margin: 0 0 30px 0;
+}
