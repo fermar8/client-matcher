@@ -1,0 +1,48 @@
+.modo-container {
+    height: 100vh;
+    width: 100%;
+}
+
+.modo-flex {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin: 40px 0 0 0;
+}
+
+.modo-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.modo-text {
+    color: #fafafa;
+    font-size: 15px;
+}
+
+.fa-arrow-left {
+    color: #fafafa !important;
+    margin: 8px 0 0 8px;
+}
+
+.modo-saltar {
+    color: #fafafa;
+    font-family: "DIN";
+    background: inherit;
+    border: none;
+    font-size: 15px;
+    text-align: right;
+    margin: 0 8px 0 0;
+}
+
+.modo-title {
+    color: #fafafa;
+    font-family: "DIN";
+    font-size: 20px;
+    text-align: center;
+    margin: 8px 0 8px 0;
+}
