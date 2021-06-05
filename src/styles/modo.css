@@ -85,10 +85,12 @@
     display: none;
 }
 
-.modo-4input {
+.modo-4input, input:focus {
     font-family: "DIN";
+    height: 34px;
+    width: 100%;
+    color: #0F1923;
     background: inherit;
-    border: 1px solid #979797;
     margin: 8px 0 8px 0;
 }
 
