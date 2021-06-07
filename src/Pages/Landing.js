@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import lolImg from './../images/lol-img.png';
 import { RedButton } from './../Components/RedButton';
@@ -10,10 +11,10 @@ function Landing() {
     return (
         <Container fluid={true} className="landing-container">
         <Row>
-        <Col className="landing-flex">
+        <Col xs="12" className="landing-flex">
                  <button className="landing-explora-btn">
-                 <span className="landing-explora-text">Explora</span> 
-                 <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i> 
+                    <span className="landing-explora-text">Explora</span> 
+                    <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i> 
                  </button>
 
                  <p className="landing-buscando">Actualmente buscando:</p>
@@ -29,7 +30,7 @@ function Landing() {
                  <p className="landing-info">Hemos añadido esta categoría de acuerdo a tus parámetros de búsqueda.</p>
                  <p className="landing-edita">Edita tus parametros aquí</p>
 
-                 <RedButton className="landing-redbtn">Modificar preferencias</RedButton>
+                 <Link className="landing-link-modo" to={'/modo'}><RedButton className="landing-redbtn">Modificar preferencias</RedButton></Link>
         </Col>
         </Row>
         <NavBar></NavBar>

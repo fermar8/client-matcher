@@ -8,6 +8,7 @@ import Signup from './Pages/Signup';
 import Landing from './Pages/Landing';
 import EditaPerfil from './Pages/EditaPerfil';
 import Chat from './Pages/Chat';
+import Modo from './Pages/Modo';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
        <Route exact path="/landing" render={(props) => <Landing {...props} />} />       
        <Route exact path="/editaperfil" render={(props) => <EditaPerfil {...props} />} />
        <Route exact path="/chat" render={(props) => <Chat {...props} />} />
+       <Route exact path="/landing" render={(props) => <Landing {...props} />} />
+       <Route exact path="/modo" render={(props) => <Modo {...props} />} />
      </Switch>
     </GlobalStyle>
   );
