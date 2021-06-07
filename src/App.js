@@ -9,6 +9,7 @@ import Landing from './Pages/Landing';
 import EditaPerfil from './Pages/EditaPerfil';
 import Chat from './Pages/Chat';
 import Modo from './Pages/Modo';
+import AdminPage from './Pages/AdminPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
        <Route exact path="/chat" render={(props) => <Chat {...props} />} />
        <Route exact path="/landing" render={(props) => <Landing {...props} />} />
        <Route exact path="/modo" render={(props) => <Modo {...props} />} />
+       <Route exact path="/admin" render={(props) => <AdminPage {...props} />} />
      </Switch>
     </GlobalStyle>
   );
