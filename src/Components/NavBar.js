@@ -6,22 +6,20 @@ import './../styles/navbar.css';
 function Navbar () {
 
     return (
-        <div style={{width: "100vw"}}fluid={true} >
             <Row className="navbar-barra">
             <Col xs="3" className="navbar-icon">
-            <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-home"></i>
+            <a href="/editaperfil"><i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-user"></i></a>
             </Col>
             <Col xs="3" className="navbar-icon">
-            <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i>
+            <a href="/chat"><i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-comments"></i></a>
             </Col>
             <Col xs="3" className="navbar-icon">
-            <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-comments"></i>
+            <a href="/landing"><i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i></a>
             </Col>
             <Col xs="3" className="navbar-icon">
-            <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-user"></i>
+            <a href="/"><i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-home"></i></a>
             </Col>
             </Row>
-        </div>
     )
 }
 

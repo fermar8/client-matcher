@@ -7,7 +7,9 @@ import { RedButton } from './../Components/RedButton';
 import NavBar from './../Components/NavBar';
 import './../styles/landing.css';
 
-function Landing() {
+function Landing(props) {
+
+    console.log(props.loguejat);
     return (
         <Container fluid={true} className="landing-container">
         <Row>
