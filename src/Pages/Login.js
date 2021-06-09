@@ -2,9 +2,8 @@ import React, { useState, useRef, Component }  from 'react'
 import { Form, FormGroup, Label, Input,
      Container, Row, Col } from 'reactstrap';
 import imgPerfil from './../images/img-perfil.png';
-//import { withAuth } from './../context/auth-context';
+import { withAuth } from './../context/auth-context';
 import { RedButton } from './../Components/RedButton';
-import AuthService from "../services/auth.service";
 import './../styles/login.css';
 
 const required = value => {
@@ -17,7 +16,7 @@ const required = value => {
     }
   };
   
-  export default class Login extends Component {
+ class Login extends Component {
     constructor(props) {
       super(props);
       this.handleLogin = this.handleLogin.bind(this);
@@ -46,33 +45,8 @@ const required = value => {
     
       handleLogin(e) {
         e.preventDefault();
-    
-        this.setState({
-          message: "",
-          loading: true
-        });
-
-
-        AuthService.login(this.state.username, this.state.password).then(
-            () => {
-            this.props.setloguejat(true);
-                this.props.history.push("/landing");
-            
-            },
-            error => {
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-    
-              this.setState({
-                loading: false,
-                message: resMessage
-              });
-            }
-          );
+        const { username, password } = this.state;
+        this.props.login(username, password)
     }
     
 
@@ -139,7 +113,8 @@ const required = value => {
         )
     }
 }
-    
+
+export default withAuth(Login);
 
 
 

@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import lolImg from './../images/lol-img.png';
+import { withAuth } from './../context/auth-context';
 import { RedButton } from './../Components/RedButton';
 
 import NavBar from './../Components/NavBar';
 import './../styles/landing.css';
 
-function Landing(props) {
+function Landing() {
 
-    console.log(props.loguejat);
     return (
         <Container fluid={true} className="landing-container">
         <Row>
@@ -40,4 +40,4 @@ function Landing(props) {
     )
 }
 
-export default Landing
+export default withAuth(Landing)

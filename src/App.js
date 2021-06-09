@@ -11,6 +11,10 @@ import EditaPerfil from './Pages/EditaPerfil';
 import Chat from './Pages/Chat';
 import Modo from './Pages/Modo';
 import AdminPage from './Pages/AdminPage';
+import Swipe from './Pages/Swipe';
+
+import AnonRoute from './Components/AnonRoute';
+import PrivateRoute from './Components/PrivateRoute';
 
 class App extends Component {
   constructor(props) {
@@ -21,14 +25,7 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
-      loguejat: false
     };
-
-    this.setloguejat = this.setloguejat.bind(this);
-  }
-  
-  setloguejat(valor){
-    this.setState({loguejat: valor});
   }
 
   componentDidMount() {
@@ -47,25 +44,23 @@ class App extends Component {
     AuthService.logout();
   }
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    //const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
     return (
       <GlobalStyle>
        <Switch>
-         <Route exact path="/" render={(props) => <Home {...props} />} />
-         <Route exact path="/login" render={(props) => <Login setloguejat={this.setloguejat} {...props} />} />
-         <Route exact path="/signup" render={(props) => <Signup {...props} />} />
-         
-       { this.state.loguejat ? <>
-        <Route exact path="/editaperfil" render={(props) => <EditaPerfil loguejat={this.state.loguejat} {...props} />} />
-         <Route exact path="/chat" render={(props) => <Chat {...props} />} />
-         <Route exact path="/landing" render={(props) => <Landing loguejat={this.state.loguejat} {...props} />} />   
        
-       </>
-       : <>
-         <Route exact path="/landing" render={(props) => <Login setloguejat={this.setloguejat} {...props} />} />
+        <PrivateRoute exact path="/editaperfil" component={EditaPerfil} />
+         <PrivateRoute exact path="/chat" component={Chat} />
+         <PrivateRoute exact path="/landing" component={Landing} /> 
+         <PrivateRoute exact path="/modo" component={Modo} />
+         <PrivateRoute exact path="/swipe" component={Swipe} />
        
-       </>}
-         <Route exact path="/modo" render={(props) => <Modo {...props} />} />
+    
+       <AnonRoute exact path="/" component={Home} />
+       <AnonRoute exact path="/login" component={Login} />
+       <AnonRoute exact path="/signup" component={Signup}/>
+       
+      
          <Route exact path="/admin" render={(props) => <AdminPage {...props} />} />
        </Switch>
       </GlobalStyle>

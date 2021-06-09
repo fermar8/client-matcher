@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, 
     Container, Row, Col, Input } from 'reactstrap';
+import { withAuth } from './../context/auth-context';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { RedButton } from './../Components/RedButton';
@@ -312,4 +313,4 @@ const handleClick = (e) => {
     )
 }
 
-export default Modo
+export default withAuth(Modo)

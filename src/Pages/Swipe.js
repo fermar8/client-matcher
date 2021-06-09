@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { withAuth } from './../context/auth-context';
 import imgPerfil from './../images/img-perfil.png';
 import { DarkButton } from './../Components/DarkButton';
 import { RedButton } from './../Components/RedButton';
@@ -161,4 +162,4 @@ if (summonerNames.length === 1) {
     )
 }
 
-export default Swipe;
+export default withAuth(Swipe);

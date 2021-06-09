@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap';
-
+import { withAuth } from './../context/auth-context';
 import NavBar from '../Components/NavBar';
 import './../styles/landing.css';
 
@@ -17,4 +17,4 @@ function Chat() {
     )
 }
 
-export default Chat
+export default withAuth(Chat)
