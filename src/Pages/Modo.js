@@ -49,11 +49,10 @@ const getChamps=()=>{
           .then(function(myJson) {
             setChamps(myJson)
           });
-      }
+}
 
 useEffect(()=>{
     getChamps()
-    console.log('champs', champs)
 },[])
 
 
@@ -288,7 +287,7 @@ const handleClick = (e) => {
                 </div>
 
                 <div className="modo-buscar">
-                <RedButton>Buscar</RedButton>
+                <Link to={'/swipe'}><RedButton>Buscar</RedButton></Link>
                 </div>
                     
 

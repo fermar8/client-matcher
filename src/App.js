@@ -7,6 +7,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Landing from './Pages/Landing';
 import Modo from './Pages/Modo';
+import Swipe from './Pages/Swipe';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
        <Route exact path="/signup" render={(props) => <Signup {...props} />} />
        <Route exact path="/landing" render={(props) => <Landing {...props} />} />
        <Route exact path="/modo" render={(props) => <Modo {...props} />} />
+       <Route exact path="/swipe" render={(props) => <Swipe {...props} />} />
      </Switch>
     </GlobalStyle>
   );
