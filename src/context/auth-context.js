@@ -13,12 +13,11 @@ class AuthProvider extends React.Component {
   }
 
   componentDidMount () {
-    const user = function currentUser(){
-      const pr = JSON.parse(localStorage.getItem('user'));
-      return pr;
-    }
-    if (user) {
-      this.setState({ isLoggedIn: true, user: user, isLoading: false });
+    
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    
+    if (currentUser != null) {
+      this.setState({ isLoggedIn: true, user: currentUser, isLoading: false });
     } else {
       this.setState({ isLoggedIn: false, user: null, isLoading: false });
     }
@@ -41,9 +40,15 @@ class AuthProvider extends React.Component {
   }
 
   logout = () => {
-    authService.logout()
-      .then(() => this.setState({ isLoggedIn: false, user: null }))
-      .catch((err) => console.log(err));
+    logoutUser()
+
+    function logoutUser () {
+      const pr = localStorage.removeItem("user");
+      return pr;
+    }
+    if (localStorage.getItem("user") === null) {
+      this.setState({ isLoggedIn: false, user: null })
+    }
   }
 
 

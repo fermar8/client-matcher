@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import lolImg from './../images/lol-img.png';
@@ -8,7 +8,17 @@ import { RedButton } from './../Components/RedButton';
 import NavBar from './../Components/NavBar';
 import './../styles/landing.css';
 
-function Landing() {
+function Landing(props) {
+
+const [ user, setUser ] = useState(props.user)
+
+useEffect(() => {
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (currentUser != null) {
+      setUser(currentUser)
+    }
+}, [])
 
     return (
         <Container fluid={true} className="landing-container">

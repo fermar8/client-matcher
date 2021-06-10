@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import { RedButton } from './../Components/RedButton';
 import './../styles/modo.css';
 
-function Modo() {
+function Modo(props) {
+
+    const [ user, setUser ] = useState(props.user)
 
     const [ champs, setChamps ] = useState([]);
     const [ myChamps, setMyChamps ] = useState([]);
@@ -54,6 +56,11 @@ const getChamps=()=>{
 
 useEffect(()=>{
     getChamps()
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (currentUser != null) {
+      setUser(currentUser)
+    }
 },[])
 
 

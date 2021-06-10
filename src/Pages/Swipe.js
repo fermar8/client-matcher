@@ -8,8 +8,9 @@ import api from '../services/api-lol';
 import './../styles/swipe.css';
 
 
-function Swipe() {
+function Swipe(props) {
 
+const [ user, setUser ] = useState(props.user)
 const [ summonerNames, setSummonerNames ] = useState([{}]);
 const [ currentSummoner, setCurrentSummoner ] = useState([])
 const [ quedanSummoners, setQuedanSummoners ] = useState(true);
@@ -54,6 +55,11 @@ async function loadData(list) {
 
 useEffect(()=>{
     getSummoners();
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (currentUser != null) {
+      setUser(currentUser)
+    }
   }, [])
 
 let rankedMatchesToRender;

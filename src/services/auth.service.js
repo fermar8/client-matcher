@@ -23,7 +23,8 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    const pr = localStorage.removeItem("user");
+    return pr;
   }
 
   register(nom, username, password) {
