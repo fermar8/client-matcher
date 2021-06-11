@@ -8,10 +8,11 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Landing from './Pages/Landing';
 import EditaPerfil from './Pages/EditaPerfil';
-import Chat from './Pages/Chat';
 import Modo from './Pages/Modo';
 import AdminPage from './Pages/AdminPage';
 import Swipe from './Pages/Swipe';
+import Matches from './Pages/Matches';
+import Chat from './Pages/Chat';
 
 import AnonRoute from './Components/AnonRoute';
 import PrivateRoute from './Components/PrivateRoute';
@@ -50,15 +51,16 @@ class App extends Component {
        <Switch>
        
         <PrivateRoute exact path="/editaperfil" component={EditaPerfil} />
-         <PrivateRoute exact path="/chat" component={Chat} />
          <PrivateRoute exact path="/landing" component={Landing} /> 
          <PrivateRoute exact path="/modo" component={Modo} />
          <PrivateRoute exact path="/swipe" component={Swipe} />
+         <PrivateRoute exact path="/matches" component={Matches} />
+         <PrivateRoute exact path="/chat" component={Chat} />
        
     
-       <AnonRoute exact path="/" component={Home} />
-       <AnonRoute exact path="/login" component={Login} />
-       <AnonRoute exact path="/signup" component={Signup}/>
+          <AnonRoute exact path="/" component={Home} />
+          <AnonRoute exact path="/login" component={Login} />
+          <AnonRoute exact path="/signup" component={Signup}/>
        
       
          <Route exact path="/admin" render={(props) => <AdminPage {...props} />} />

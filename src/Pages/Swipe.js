@@ -25,7 +25,6 @@ import { DarkButton } from './../Components/DarkButton';
 import { RedButton } from './../Components/RedButton';
 import api from '../services/api-lol';
 import './../styles/swipe.css';
-import { fetchActionsWithArrayOfIdentifiedRecordsResponse } from 'ra-core';
 
 
 function Swipe(props) {
@@ -84,7 +83,7 @@ async function loadData(list) {
     .then(res => {
      setCurrentSummoner(res.data)
     })
-    .catch(e => alert("Error al buscar invocador"))
+    .catch(e => alert("Error al buscar invocador, por favor recarga la página"))
     
     if (res && res.data) {
         setCurrentSummoner(res.data)
@@ -226,11 +225,22 @@ if (currentSummoner.allGames) {
     })
 }
 
+/*
+async function findChamp ( champs, champId ) {
+    const promises = champs.find(c => c.key == champId);
+    const results = await Promise.all(promises);
+    return results;
+}
+*/
+
 let campeonesFavoritos;
 if (currentSummoner.championMastery && champs) {
     campeonesFavoritos = currentSummoner.championMastery.map((el ) => {
      let nombre = champs.find(c => c.key == el.championId);
      console.log("nombre", nombre)
+     if (!nombre ) {
+         console.log(champs, el )
+     }
        return (
         <Container fluid={true} className="match-container" key={el.championId}>
             <Row className="match-history">

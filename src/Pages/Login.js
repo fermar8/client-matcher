@@ -1,4 +1,4 @@
-import React, { useState, useRef, Component }  from 'react'
+import React, { Component }  from 'react'
 import { Form, FormGroup, Label, Input,
      Container, Row, Col } from 'reactstrap';
 import imgPerfil from './../images/img-perfil.png';
@@ -6,6 +6,7 @@ import { withAuth } from './../context/auth-context';
 import { RedButton } from './../Components/RedButton';
 import './../styles/login.css';
 
+/*
 const required = value => {
     if (!value) {
       return (
@@ -15,6 +16,7 @@ const required = value => {
       );
     }
   };
+*/
   
  class Login extends Component {
     constructor(props) {
