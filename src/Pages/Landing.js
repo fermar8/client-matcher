@@ -5,13 +5,15 @@ import lolImg from './../images/lol-img.png';
 import { RedButton } from './../Components/RedButton';
 
 import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 import './../styles/landing.css';
 
 function Landing() {
     return (
         <Container fluid={true} className="landing-container">
+        <NavBarS></NavBarS>            
         <Row>
-        <Col xs="12" className="landing-flex">
+        <Col xs="12" class="landing-flex">
                  <button className="landing-explora-btn">
                     <span className="landing-explora-text">Explora</span> 
                     <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i> 

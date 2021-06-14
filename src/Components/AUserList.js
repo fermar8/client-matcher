@@ -1,14 +1,14 @@
 import React from 'react';
 import {List, Datagrid, TextField, Filter, SearchInput} from 'react-admin';
 
-const UserFilter = (props) => (<Filter>
+const UserFilter = (props) => (<Filter {...props}>
     <SearchInput placeholder='Nombre' source='nom' resettable alwaysOn />
 </Filter>)
 
 
-function AUserList() {
+function AUserList(props) {
     return (
-        <List filters={<UserFilter />}>
+        <List {...props} filters={<UserFilter />}>
             <Datagrid rowClick='edit'>
                 <TextField source='id' />
                 <TextField source='nom' />

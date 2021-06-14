@@ -7,7 +7,7 @@ import AUserEdit from '../Components/AUserEdit'
 
 function AdminPage() {
     return (
-        <Admin dataProvider={('http://localhost:8080')}>
+        <Admin dataProvider={'http://localhost:8080'}>
         <Resource name='report' list={AReportList} edit={AReportEdit} />
         <Resource name='user' list={AUserList} edit={AUserEdit} />
         </Admin>
