@@ -104,8 +104,9 @@ useEffect(()=>{
 
 const handleClick = () => {
 if (summonerNames.length === 1) {
-    setQuedanSummoners(false)
+    setQuedanSummoners(false);
 } else {
+    setLoading(1)
     let newArr = summonerNames.slice(1);
     setSummonerNames(newArr)
     loadData(newArr);
@@ -346,7 +347,7 @@ if (currentSummoner.championMastery && champs) {
         :
         <Row>
             <Col xs="12" className="no-summoners-left">
-                <p>Lo sentimos, no hay más posibles matches en este momento. Vuelve a intentarlo más tarde</p>
+                <p>Lo sentimos, no hay más posibles matches en este momento. Vuelve a intentarlo más tarde.</p>
             </Col>
         
         </Row>
