@@ -1,0 +1,36 @@
+.matches-container {
+    height: 100vh;
+    width: 100%;
+    color: #fafafa
+}
+
+.matches-flex {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin: 40px 0 0 0;
+}
+
+h2 {
+    font-family: "DIN";
+    font-size: 20px;
+    font-weight: bold;
+}
+
+img {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.matches-nom {
+    font-family: "DIN";
+    font-size: 20px;
+}
+
+.matches-data {
+    font-family: "DIN";
+    font-size: 15px !important;
+}
+

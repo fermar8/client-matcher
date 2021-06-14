@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, 
     Container, Row, Col, Input } from 'reactstrap';
+import { withAuth } from './../context/auth-context';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { RedButton } from './../Components/RedButton';
 import './../styles/modo.css';
 
-function Modo() {
+function Modo(props) {
+
+    const [ user, setUser ] = useState(props.user)
 
     const [ champs, setChamps ] = useState([]);
     const [ myChamps, setMyChamps ] = useState([]);
@@ -49,11 +52,15 @@ const getChamps=()=>{
           .then(function(myJson) {
             setChamps(myJson)
           });
-      }
+}
 
 useEffect(()=>{
     getChamps()
-    console.log('champs', champs)
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (currentUser != null) {
+      setUser(currentUser)
+    }
 },[])
 
 
@@ -288,7 +295,7 @@ const handleClick = (e) => {
                 </div>
 
                 <div className="modo-buscar">
-                <RedButton>Buscar</RedButton>
+                <Link to={'/swipe'}><RedButton>Buscar</RedButton></Link>
                 </div>
                     
 
@@ -313,4 +320,4 @@ const handleClick = (e) => {
     )
 }
 
-export default Modo
+export default withAuth(Modo)

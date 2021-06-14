@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Form, FormGroup, Label, Input,
      Container, Row, Col } from 'reactstrap';
+import { withAuth } from '../context/auth-context';
 import { RedButton } from '../Components/RedButton';
 import { DarkButton } from '../Components/DarkButton';
 import imgPerfil from './../images/img-perfil.png';
@@ -8,7 +9,7 @@ import imgPerfil from './../images/img-perfil.png';
 import './../styles/login.css';
 import './../styles/signup.css';
 
-function EditaPerfil() {
+function EditaPerfil(props) {
 
     const [ image, setImage ] = useState(imgPerfil);
     const inputEl = useRef();
@@ -75,6 +76,10 @@ const handleFileUpload = (e) => {
             <FormGroup className="signup-button">
             <DarkButton>Edita tu perfil</DarkButton>
             </FormGroup>
+
+            <FormGroup>
+                <button type="button" onClick={props.logout}>Logout</button>
+            </FormGroup>
             
 
         </Form>
@@ -84,4 +89,4 @@ const handleFileUpload = (e) => {
     )
 }
 
-export default EditaPerfil
+export default withAuth(EditaPerfil)

@@ -1,0 +1,246 @@
+.swipe-container {
+    height: 100vh;
+    width: 100%;
+}
+
+.swipe-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.swipe-params {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+}
+
+.swipe-params p, .fa-times {
+    color: #fafafa;
+    font-size: 15px;
+}
+
+.swipe-params .fa-cog {
+    color: #FF4655;
+}
+
+hr {
+    color: #979797;
+}
+
+.swipe-perfil {
+    display: flex;
+}
+
+.swipe-perfil img {
+    height: 60px !important;
+    width: 60px !important;
+    border-radius: 30px !important;
+}
+
+.swipe-perfil .nom {
+    font-size: 25px;
+    color: #fafafa;
+    margin: 4px 0 0 12px;
+}
+
+.swipe-perfil .mess {
+    font-size: 15px;
+    color: #fafafa;
+    margin: 4px 0 0 12px;
+}
+
+.swipe-swipe {
+    display: flex;
+    flex-direction: column;
+}
+
+.swipe-swipe img {
+    height: 20px !important;
+    width: 20px !important;
+    border-radius: 10px !important;
+    margin: 0 2px 0 2px;
+}
+
+.swipe-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.swipe-btns .btn {
+    height: 40px !important;
+    width: 150px !important;
+}
+
+.swipe-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 8px 0 0 0;
+}
+
+.swipe-info img {
+    height: 55px !important;
+    width: 55px !important;
+    border-radius: 27.5px !important;
+    margin: 0 2px 0 2px;
+}
+
+.swipe-swipe p {
+    font-size: 10px;
+    color: #fafafa;
+    margin: 4px;
+}
+
+.swipe-change {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 0 0;
+}
+
+.btn-sel-r {
+    width: 100%;
+    height: 34px;
+    font-size: 15px;
+    color: #fafafa;
+    background: #FF4655;
+    transition: background 2s ease;
+    border-top-right-radius: 10px;
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 8px 0 8px 2px;
+}
+.btn-desel-r {
+    width: 100%;
+    height: 34px;
+    font-size: 15px;
+    color: #fafafa;
+    background: black;
+    transition: background 2s ease;
+    border-top-right-radius: 10px;
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 8px 0 8px 2px;
+}
+
+.btn-sel-l {
+    width: 100%;
+    height: 34px;
+    font-size: 15px;
+    color: #fafafa;
+    background: #FF4655;
+    transition: background 2s ease;
+    border-top-left-radius: 10px;
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 8px 0 8px 2px;
+}
+
+.btn-desel-l {
+    width: 100%;
+    height: 34px;
+    font-size: 15px;
+    color: #fafafa;
+    background: black;
+    transition: background 2s ease;
+    border-top-left-radius: 10px;
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 8px 0 8px 2px;
+}
+
+.swipe-wins {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.winrate-green {
+    color: #78C275 !important;
+}
+
+.winrate-red {
+    color: #d65e56 !important;
+}
+
+.league-icon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.no-summoners-left {
+    height: 100vh;
+    background-color: #0F1923;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-summoners-left p {
+    margin: 0 20px 0 20px;
+    font-size: 15px;
+    color: #fafafa;
+}
+
+.match-container {
+    background-color: black;
+    margin: 0;
+    padding: 0
+}
+
+.match-history {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    background-color: black;
+    border: 1px solid #979797;
+    margin: 2px;
+}
+
+.match-history p {
+    color: #fafafa;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.match-kda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.match-economy {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+
+.fa-coins {
+    color: #e8e538;
+    font-size: 8px;
+}
+
+.match-result-win {
+    color: #78C275 !important;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.match-result-loss {
+    color: #e8070b !important;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+}
