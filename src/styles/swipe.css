@@ -180,6 +180,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .no-summoners-left p {
@@ -243,4 +244,11 @@ hr {
     font-size: 15px;
     text-align: center;
     font-weight: bold;
+}
+.PRUEBAS {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

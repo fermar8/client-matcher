@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Navbar } from 'reactstrap';
 import { withAuth } from './../context/auth-context';
+import { Link } from 'react-router-dom';
 
 import imgPerfil from './../images/img-perfil.png';
 import emblemIron from './../images/Emblem_Iron.png';
@@ -23,6 +24,8 @@ import mastery7 from './../images/mastery-7.png';
 
 import { DarkButton } from './../Components/DarkButton';
 import { RedButton } from './../Components/RedButton';
+import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 import api from '../services/api-lol';
 import './../styles/swipe.css';
 
@@ -272,7 +275,7 @@ if (currentSummoner.championMastery && champs) {
 
     return (
         <Container className="swipe-container" fluid={true}>
-
+            <NavBarS></NavBarS>
         {!loading ? 
         (
         <>
@@ -344,11 +347,13 @@ if (currentSummoner.championMastery && champs) {
         {quedanSummoners ? 
         null
         :
-        <Row>
-            <Col xs="12" className="no-summoners-left">
+        <Row className="no-summoners-left">
+            <Col xs='12 PRUEBAS'>
                 <p>Lo sentimos, no hay más posibles matches en este momento. Vuelve a intentarlo más tarde</p>
             </Col>
-        
+            <Col xs='12 PRUEBAS'>
+                <a href="/landing"><i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-undo  fa-3x"></i></a>
+            </Col>
         </Row>
         }
         </>
@@ -360,6 +365,7 @@ if (currentSummoner.championMastery && champs) {
             </Col>
     </Row>
     }
+    <NavBar></NavBar>
         </Container>
     )
 }

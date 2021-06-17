@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'reactstrap';
-import NavBar  from './../Components/NavBar';
+import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 import SearchBar from './../Components/SearchBar';
 import UserList from './../Components/UserList';
 import './../styles/matches.css';
@@ -41,6 +42,7 @@ function Matches() {
 
     return (
         <Container fluid={true} className="matches-container">
+            <NavBarS></NavBarS>
             <Row>
                 <Col xs="12" className="matches-flex">
                     <div>

@@ -1,12 +1,14 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap';
 import { withAuth } from './../context/auth-context';
-import NavBar from '../Components/NavBar';
 import './../styles/chat.css';
+import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 
 function Chat(props) {
     return (
         <Container fluid={true} className="chat-container">
+            <NavBarS></NavBarS>
             <Row>
                 <Col xs="12">
                  <div className="chat-flex">

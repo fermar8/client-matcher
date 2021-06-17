@@ -4,6 +4,8 @@ import { Form, FormGroup, Label, Input,
 import { withAuth } from '../context/auth-context';
 import { RedButton } from '../Components/RedButton';
 import { DarkButton } from '../Components/DarkButton';
+import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 import imgPerfil from './../images/img-perfil.png';
 
 import './../styles/login.css';
@@ -27,6 +29,7 @@ const handleFileUpload = (e) => {
 
     return (
         <Container fluid={true} className="signup-container">
+            <NavBarS></NavBarS>
         <Row>
         <Col xs="12" className="signup-flex">
         <h1 className="login-title">Edita tu Perfil</h1>
@@ -78,13 +81,14 @@ const handleFileUpload = (e) => {
             </FormGroup>
 
             <FormGroup>
-                <button type="button" onClick={props.logout}>Logout</button>
+                <button class='LogoutButton' type="button" onClick={props.logout}>Logout</button>
             </FormGroup>
             
 
         </Form>
         </Col>
         </Row>
+        <NavBar></NavBar>
         </Container>
     )
 }

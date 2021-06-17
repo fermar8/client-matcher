@@ -13,6 +13,7 @@ import AdminPage from './Pages/AdminPage';
 import Swipe from './Pages/Swipe';
 import Matches from './Pages/Matches';
 import Chat from './Pages/Chat';
+import AdminReports from './Pages/AdminReports'
 
 import AnonRoute from './Components/AnonRoute';
 import PrivateRoute from './Components/PrivateRoute';
@@ -49,8 +50,8 @@ class App extends Component {
     return (
       <GlobalStyle>
        <Switch>
-       
-        <PrivateRoute exact path="/editaperfil" component={EditaPerfil} />
+        
+         <PrivateRoute exact path="/editaperfil" component={EditaPerfil} />
          <PrivateRoute exact path="/landing" component={Landing} /> 
          <PrivateRoute exact path="/modo" component={Modo} />
          <PrivateRoute exact path="/swipe" component={Swipe} />
@@ -61,6 +62,7 @@ class App extends Component {
           <AnonRoute exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup}/>
+          <AnonRoute exact path="/reports" component={AdminReports} />
        
       
          <Route exact path="/admin" render={(props) => <AdminPage {...props} />} />
