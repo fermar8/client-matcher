@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { withAuth } from './../context/auth-context';
+import { getUserInfo } from './../services/user.service';
 
 import imgPerfil from './../images/img-perfil.png';
 import emblemIron from './../images/Emblem_Iron.png';
@@ -30,11 +31,13 @@ import './../styles/swipe.css';
 function Swipe(props) {
 
 const [ user, setUser ] = useState(props.user);
+const [ userInfo, setUserInfo ] = useState([{}]);
+//NECESSITO get/users
 const [ champs, setChamps ] = useState([]);
 const [ summonerNames, setSummonerNames ] = useState([{}]);
 const [ currentSummoner, setCurrentSummoner ] = useState([])
 const [ quedanSummoners, setQuedanSummoners ] = useState(true);
-const [ loading, setLoading ] = useState(0);
+const [ loading, setLoading ] = useState();
 const [ showHistorial, setShowHistorial ] = useState(true)
 
 const getChamps=()=>{
@@ -53,6 +56,12 @@ const getChamps=()=>{
         setChamps(myJson)
       });
 }
+
+let fetchUserData = useCallback(async (id) => {
+    const result = await getUserInfo(id);
+    const body = await result.data;
+    setUserInfo(body)
+}, [])
 
 
 const getSummoners= async()=>{
@@ -92,14 +101,15 @@ async function loadData(list) {
 }
 
 useEffect(()=>{
-    getSummoners()
-    getChamps()
+    getSummoners();
+    getChamps();
     
     let currentUser = JSON.parse(localStorage.getItem('user'));
 
     if (currentUser != null) {
       setUser(currentUser)
     }
+    fetchUserData(currentUser.id);
   }, [])
 
 const handleClick = () => {
@@ -348,6 +358,7 @@ if (currentSummoner.championMastery && champs) {
         <Row>
             <Col xs="12" className="no-summoners-left">
                 <p>Lo sentimos, no hay más posibles matches en este momento. Vuelve a intentarlo más tarde.</p>
+                
             </Col>
         
         </Row>

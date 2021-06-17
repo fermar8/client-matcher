@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Form, FormGroup, Label, 
     Container, Row, Col, Input } from 'reactstrap';
-import { withAuth } from './../context/auth-context';
-import Select from 'react-select';
 import { Link } from 'react-router-dom';
+import { withAuth } from './../context/auth-context';
+
+import { getUserInfo, editUserInfo } from '../services/user.service';
+
+
+import Select from 'react-select';
 import { RedButton } from './../Components/RedButton';
 import './../styles/modo.css';
 
 function Modo(props) {
 
-    const [ user, setUser ] = useState(props.user)
+    const [ user, setUser ] = useState(props.user);
+    const [ userInfo, setUserInfo ] = useState([{}])
+
 
     const [ champs, setChamps ] = useState([]);
     const [ myChamps, setMyChamps ] = useState([]);
@@ -37,6 +43,48 @@ function Modo(props) {
     const [ siCheck, setSiCheck ] = useState(false);
     const [ noCheck, setNoCheck ] = useState(false);
 
+
+let fetchData = useCallback(async (id) => {
+    const result = await getUserInfo(id);
+    const body = await result.data;
+    setDuoCheck(body.duo);
+    setFlexCheck(body.flex);
+    setClashCheck(body.clash);
+    setOtroCheck(body.otro);
+    //setForFunCheck(body.forFun)
+    setTryhardCheck(body.tryHard);
+    //setProbarCheck(body.probar);
+    setOtpsCheck(body.otps);
+    setTopCheck(body.top);
+    setJungleCheck(body.jungle);
+    setMidCheck(body.mid);
+    setBotCheck(body.bot);
+    setSuppCheck(body.supp);
+    setFillCheck(body.fill)
+    setUserInfo(body)
+}, [])
+
+async function editPreferences (e) {
+    await editUserInfo({
+        userInfo,
+        duoCheck,
+        flexCheck,
+        clashCheck,
+        otroCheck,
+        forFunCheck,
+        tryhardCheck,
+        otpsCheck,
+        probarCheck,
+        topCheck,
+        jungleCheck,
+        midCheck,
+        botCheck,
+        suppCheck,
+        fillCheck
+    })
+
+}
+
 const getChamps=()=>{
         fetch('champs.json'
         ,{
@@ -61,6 +109,8 @@ useEffect(()=>{
     if (currentUser != null) {
       setUser(currentUser)
     }
+    fetchData(currentUser.id);
+    
 },[])
 
 
@@ -295,7 +345,7 @@ const handleClick = (e) => {
                 </div>
 
                 <div className="modo-buscar">
-                <Link to={'/swipe'}><RedButton>Buscar</RedButton></Link>
+                <Link to={'/swipe'}><RedButton onClick={(e) => editPreferences(e)}>Buscar</RedButton></Link>
                 </div>
                     
 
