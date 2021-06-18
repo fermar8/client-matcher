@@ -1,79 +1,94 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Table, Button, FormGroup, Label, Input} from 'reactstrap';
+import { Table, Button, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import '../styles/admin.css';
 
 import AReportEdit from '../Components/A-ReportEdit';
 import AUserDelete from '../Components/A-UserDelete';
+import NavBar from './../Components/NavBar';
+import NavBarS from './../Components/NavBarSuperior';
 
 import { getReports } from '../services/admin.service';
 
 function AdminReports() {
 
-const [ llista, setLlista ] = useState([]);
-const [ reportSel, setReportSel ] = useState([]);
-const [ showEdita, setShowEdita ] = useState(false);
-const [ showBorra, setShowBorra ] = useState(false);
+    const [llista, setLlista] = useState([]);
+    const [reportSel, setReportSel] = useState([]);
+    const [showEdita, setShowEdita] = useState(false);
+    const [showBorra, setShowBorra] = useState(false);
 
-let fetchData = useCallback(async () => {
-    const result = await getReports();
-    const body = await result.data
-    setLlista(body);
-}, []) 
-
-
-useEffect(() => {
-    fetchData();
-}, [fetchData]) 
+    let fetchData = useCallback(async () => {
+        const result = await getReports();
+        const body = await result.data
+        console.log('body', body)
+        setLlista(body);
+        
+    }, [])
 
 
-function editaReporte(e) {
-    let reporte = llista.filter(el => el.id.toString() === e.target.value);
-    setReportSel(reporte);
-    setShowEdita(!showEdita);
-}
+    useEffect(() => {
+        fetchData();
+        console.log('llista', llista)
+    }, [])
+
+
+    function editaReporte(e) {
+        console.log(llista, e);
+        let reporte = llista.filter(el => el.id == e);
+        console.log("reporte", reporte)
+        setReportSel(reporte);
+        setShowEdita(!showEdita);
+    }
 
 
 
 
     return (
-     <div className="principal">
-        <h1>Reportes</h1>
-     <Table responsive>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Usuario</th>
-                <th>Reportado</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        {llista.map((al) => {
-        return (
-         <tbody key={al.id}>
-            <tr>
-                <td>{al.id}</td>
-                <td>{al.user_account_id}</td>
-                <td>{al.user_account_id_reported}</td>
-                <td>{al.data}</td>
-                <td><Input type="checkbox" /></td>
-                <td><Button color="primary" value={al.id} onClick={(e) => editaReporte (e)}>Edita</Button></td>
-            </tr>
-        </tbody>
-            )
-        })}        
-     </Table>
+        <Container>
+            <NavBarS></NavBarS>
+            <Row className="principal">
+                <Col xl='12'>
 
-    {showEdita ? 
-    <AReportEdit fetchData={fetchData} setShowEdita={setShowEdita} showEdita={showEdita} reportSel={reportSel} llista={llista}/> : null
-    }
+                    <h1>Reportes</h1>
+                    <hr></hr>     
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Usuario</th>
+                                <th>Reportado</th>
+                                <th>Estado</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        {llista.map((al) => {
+                            return (
+                                <tbody key={al.id}>
+                                    <tr>
+                                        <td>{al.id}</td>
+                                        <td>{al.userId}</td>
+                                        <td>{al.userId_reported}</td>
+                                        <td>{al.solucionado}</td>
+                                        <td><input type="checkbox" /></td>
+                                        <td><Button color="primary" onClick={() => editaReporte(al.id)}>Edita</Button></td>
+                                    </tr>
+                                </tbody>
+                            )
+                        })}
+                    </Table>
 
-    {showBorra ? 
-    <AUserDelete fetchData={fetchData} setShowBorra={setShowBorra} showBorra={showBorra} reportSel={reportSel}/> : null }
+                    {showEdita ?
+                        <AReportEdit fetchData={fetchData} setShowEdita={setShowEdita} showEdita={showEdita} reportesSel={reportSel} llista={llista} />
+                         : null
+                    }
 
-     </div>
+                    {showBorra ?
+                        <AUserDelete fetchData={fetchData} setShowBorra={setShowBorra} showBorra={showBorra} reportesSel={reportSel} /> : null}
+                </Col>
+            </Row>
+        </Container>
     )
-    
+
 }
 
 

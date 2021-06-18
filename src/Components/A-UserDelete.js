@@ -8,7 +8,7 @@ import { deleteUsers } from '../services/admin.service';
 
 function AUserDelete(props) {
     
-const id = props.reportedSel[0].user_account_id_reported
+const id = props.reportesSel[0].userId_reported
 
 const [ modal, setModal ] = useState(true)
 

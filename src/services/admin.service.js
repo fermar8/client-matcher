@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api';
+const API = 'http://localhost:8080';
 
 
 
 async function getReports() {
     try {
         const response = await axios ({
-            url: `${API}/reported`,
+            url: `${API}/reportes/all`,
             method: 'GET',
         })
         if (response.status === 200) {
+        console.log(response)
         return response
         }
     } catch (e) {
@@ -21,11 +22,11 @@ async function getReports() {
 async function patchReports(datos) {
     try {
         const response = await axios ({
-            url: `${API}/reported/${datos.id}`,
+            url: `${API}/reportes/${datos.id}`,
             method: 'PATCH',
             data: {
-                user_account_id: datos.usuario,
-                user_account_id_reported: datos.reportado,
+                user_id: datos.usuario,
+                user_id_reported: datos.reportado,
                 motiu: datos.motivo,
                 comentari: datos.comentario,
                 prova: datos.prueba,
