@@ -16,7 +16,6 @@ function Modo(props) {
     const [ user, setUser ] = useState(props.user);
     const [ userInfo, setUserInfo ] = useState([{}])
 
-
     const [ champs, setChamps ] = useState([]);
     const [ myChamps, setMyChamps ] = useState([]);
     const [ prefChamps, setPrefChamps ] = useState([]);

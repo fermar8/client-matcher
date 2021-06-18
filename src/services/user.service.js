@@ -46,9 +46,23 @@ async function editUserInfo (datos) {
   }
 }
 
+async function getAllUsers () {
+  try {
+    const response = await axios({
+      url: `${API}/all`,
+      method: 'GET',
+    })
+    if (response.status === 200) {
+      return response
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
 
 
-export { getUserInfo, editUserInfo }
+
+export { getUserInfo, editUserInfo, getAllUsers }
 
 
 

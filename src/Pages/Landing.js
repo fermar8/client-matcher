@@ -104,10 +104,10 @@ if (userInfo.fill) {
         <Container fluid={true} className="landing-container">
             <Row>
                 <Col xs="12" className="landing-flex">
-                        <button className="landing-explora-btn">
+                        <Link to={"/swipe"}><button className="landing-explora-btn">
                             <span className="landing-explora-text">Explora</span> 
                             <i style={{color: "#FF4655", marginRight: "8px"}} className="fas fa-search"></i> 
-                        </button>
+                        </button></Link>
 
                         <p className="landing-buscando">Actualmente buscando:</p>
 

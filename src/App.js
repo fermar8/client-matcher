@@ -12,6 +12,7 @@ import Modo from './Pages/Modo';
 import AdminPage from './Pages/AdminPage';
 import Swipe from './Pages/Swipe';
 import Matches from './Pages/Matches';
+import NoMatches from './Components/NoAvailableMatches'
 import Chat from './Pages/Chat';
 
 import AnonRoute from './Components/AnonRoute';
@@ -55,6 +56,7 @@ class App extends Component {
          <PrivateRoute exact path="/modo" component={Modo} />
          <PrivateRoute exact path="/swipe" component={Swipe} />
          <PrivateRoute exact path="/matches" component={Matches} />
+         <PrivateRoute exact path="/noswipesleft" component={NoMatches} />
          <PrivateRoute exact path="/chat" component={Chat} />
        
     

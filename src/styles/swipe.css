@@ -49,6 +49,11 @@ hr {
     margin: 4px 0 0 12px;
 }
 
+.mess {
+    font-size: 15px !important;
+    color: #fafafa;
+}
+
 .swipe-swipe {
     display: flex;
     flex-direction: column;
