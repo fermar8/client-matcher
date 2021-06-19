@@ -96,3 +96,19 @@
 .chat-file {
     display: none;
 }
+
+.escribe-mensaje {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+}
+
+.escribe-mensaje .msg {
+    height: 40px !important;
+    font-family: "DIN";
+}
+
+.fa-paper-plane {
+    font-size: 20px;
+    color: #FF4655 !important;
+}

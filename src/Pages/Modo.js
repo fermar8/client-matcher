@@ -109,7 +109,6 @@ useEffect(()=>{
       setUser(currentUser)
     }
     fetchData(currentUser.id);
-    
 },[])
 
 

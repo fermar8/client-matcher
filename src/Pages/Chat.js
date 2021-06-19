@@ -1,21 +1,64 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Container, Row, Col, Dropdown, 
        DropdownToggle, DropdownMenu, DropdownItem,
        Form, FormGroup, Label, Input } from 'reactstrap';
 import { withAuth } from './../context/auth-context';
-import NavBar from '../Components/NavBar';
+import { getAllMessages, postMessage } from '../services/conversa.service';
 import { RedButton } from './../Components/RedButton';
 import { DarkButton } from './../Components/DarkButton';
 import './../styles/chat.css';
 
 function Chat(props) {
 
+const [ user, setUser ] = useState();
+const [ message, setMessage ] = useState("");
+const [ allMessages, setAllMessages ] = useState([{}]);
+const [ conversation, setConversation ] = useState({})
 const [ openElimina, setOpenElimina ] = useState(false);
 const [ openReporta, setOpenReporta ] = useState(false);
 const [ dropdownOpen, setDropdownOpen ] = useState(false);
 const [ fileMessage, setFileMessage ] = useState("Sin archivo seleccionado")
 const [ captura, setCaptura ] = useState();
 const inputEl = useRef();
+const btnEl = useRef();
+
+let fetchData = useCallback(async (id) => {
+    const result = await getAllMessages(id);
+    if (result){
+        const body = await result.data;
+        setAllMessages(body);
+    } else {
+        setAllMessages([{}])
+    }
+}, [])
+
+useEffect(() => {
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    if (currentUser != null) {
+      setUser(currentUser)
+    }
+    setConversation(props.location.dades)
+    fetchData(props.location.dades.id);
+}, [])
+
+const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+};
+
+async function handleSubmitMessage (e) {
+
+let receiverId;
+if (user.id === conversation.user_Id_creador) {
+    receiverId = conversation.user_Id_segon
+} else {
+    receiverId = conversation.user_Id_creador
+}
+    await postMessage({
+        conversation,
+        receiverId,
+        message
+    }) 
+}
 
 const handleClick = () => {
     inputEl.current.click();
@@ -30,13 +73,12 @@ const handleFileUpload = (e) => {
 }
 
 const toggle = () => setDropdownOpen(prevState => !prevState)
-
     return (
         <Container fluid={true} className="chat-container">
             <Row>
                 <Col xs="12">
                  <div className="chat-flex">
-                    <p className="chat-title">Conversación con {props.location.dades}</p>
+                    <p className="chat-title">Conversación con {props.location.dades.nom}</p>
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle style={{backgroundColor: "#0F1923", border: "none"}}>
                     <i style={{color: "#FF4655"}} className="fas fa-ellipsis-v"></i>
@@ -48,6 +90,19 @@ const toggle = () => setDropdownOpen(prevState => !prevState)
                     </DropdownMenu>
                     </Dropdown>
                 </div>
+                </Col>
+                <Col xs="12">
+
+                </Col>
+                <Col xs="12">
+                    <Form className="escribe-mensaje">
+                        <div style={{width: "80vw"}}>
+                            <Input type="textarea" className="msg" onChange={(e) => handleMessageChange(e)}  name="message" placeholder="Escribe tu mensaje"></Input>
+                        </div>
+                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#fafafa", width: "10vw", marginLeft: "8px"}}>
+                           <i onClick={(e) => handleSubmitMessage (e)} className="fas fa-paper-plane"><button style={{display: "none"}}></button></i>
+                        </div>
+                    </Form>
                 </Col>
                 {openElimina ?
                 <Col className="chat-report" xs="12">
@@ -89,7 +144,6 @@ const toggle = () => setDropdownOpen(prevState => !prevState)
                 : null }
                   
             </Row>
-        <NavBar></NavBar>
         </Container>
     )
 }

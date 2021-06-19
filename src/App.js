@@ -57,7 +57,7 @@ class App extends Component {
          <PrivateRoute exact path="/swipe" component={Swipe} />
          <PrivateRoute exact path="/matches" component={Matches} />
          <PrivateRoute exact path="/noswipesleft" component={NoMatches} />
-         <PrivateRoute exact path="/chat" component={Chat} />
+         <PrivateRoute exact path="/chat/:id" component={Chat} />
        
     
           <AnonRoute exact path="/" component={Home} />
