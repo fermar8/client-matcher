@@ -34,12 +34,13 @@ async function getAllMessages(id) {
 async function postMessage(data) {
   try {
     const response = await axios({
-      url: `${API2}/create/${data.conversation.id}`,
+      url: `${API2}/create`,
       method: 'POST',
       data: ({
-        user_id_emisor: data.conversation.id,
-        user_id_receptor: data.receiverId,
-        message_txt: data.message,
+        conversaId: data.conversation.id,
+        useridemisor: data.emisorId,
+        useridreceptor: data.receiverId,
+        message: data.message,
 
       })
     })

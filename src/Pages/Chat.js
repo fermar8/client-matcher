@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import socket from './Socket';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Dropdown, 
        DropdownToggle, DropdownMenu, DropdownItem,
        Form, FormGroup, Label, Input } from 'reactstrap';
@@ -8,19 +9,45 @@ import { RedButton } from './../Components/RedButton';
 import { DarkButton } from './../Components/DarkButton';
 import './../styles/chat.css';
 
+
 function Chat(props) {
 
+
 const [ user, setUser ] = useState();
+const [ conversation, setConversation] = useState(null);
+const [ allMessages, setAllMessages ] = useState([]);
 const [ message, setMessage ] = useState("");
-const [ allMessages, setAllMessages ] = useState([{}]);
-const [ conversation, setConversation ] = useState({})
+
+
 const [ openElimina, setOpenElimina ] = useState(false);
 const [ openReporta, setOpenReporta ] = useState(false);
 const [ dropdownOpen, setDropdownOpen ] = useState(false);
 const [ fileMessage, setFileMessage ] = useState("Sin archivo seleccionado")
 const [ captura, setCaptura ] = useState();
 const inputEl = useRef();
+const scrollRef = useRef();
 const btnEl = useRef();
+
+useEffect(() => {
+    socket.on('connect', () => {
+        console.log(`You connected with id: ${socket.id}`)
+    })
+  }, []);
+ 
+useEffect(() => {
+    let mounted = true;
+    socket.on('receiveMessage', message => {
+      if (allMessages && mounted) {
+         setAllMessages(prev => [...prev, message])
+        } else {
+            console.log(message)
+        }
+    })
+        
+    return function cleanup () {
+        mounted = false;
+    }
+}, [])
 
 let fetchData = useCallback(async (id) => {
     const result = await getAllMessages(id);
@@ -30,7 +57,7 @@ let fetchData = useCallback(async (id) => {
     } else {
         setAllMessages([{}])
     }
-}, [])
+}, [conversation])
 
 useEffect(() => {
     let currentUser = JSON.parse(localStorage.getItem('user'));
@@ -41,23 +68,54 @@ useEffect(() => {
     fetchData(props.location.dades.id);
 }, [])
 
+const scrollToBottom = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+}
+
+useEffect(() => {
+    scrollToBottom()
+  }, [allMessages]);
+
+
 const handleMessageChange = (e) => {
     setMessage(e.target.value);
 };
 
-async function handleSubmitMessage (e) {
+async function defineEmisorReceptor (e) {
 
-let receiverId;
-if (user.id === conversation.user_Id_creador) {
-    receiverId = conversation.user_Id_segon
-} else {
-    receiverId = conversation.user_Id_creador
+    let receiverId;
+    let emisorId;
+    if (user.id === conversation.user_Id_creador) {
+        receiverId = conversation.user_Id_segon;
+        emisorId = conversation.user_Id_creador
+    } else {
+        receiverId = conversation.user_Id_creador;
+        emisorId = conversation.user_Id_segon;
+    }
+    handleSubmitMessage(receiverId, emisorId)
 }
-    await postMessage({
+
+
+
+async function handleSubmitMessage (receiverId, emisorId) {
+
+socket.emit('sendMessage', {
+    useridemisor: emisorId,
+    useridreceptor: receiverId,
+    message
+})
+
+try {
+   const response =  await postMessage({
         conversation,
+        emisorId,
         receiverId,
         message
     }) 
+    setMessage("");
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 const handleClick = () => {
@@ -92,15 +150,23 @@ const toggle = () => setDropdownOpen(prevState => !prevState)
                 </div>
                 </Col>
                 <Col xs="12">
-
+                  {allMessages.map(el => {
+                      return (
+                      <div key={el.id} className={el.useridemisor === user.id ? "chat-user" : "chat-receptor"}>
+                          <p style={{margin: "2px"}}>{el.message}</p>
+                      </div>
+                      )
+                  })}
+                     <div ref={scrollRef}></div>
+                
                 </Col>
                 <Col xs="12">
                     <Form className="escribe-mensaje">
                         <div style={{width: "80vw"}}>
-                            <Input type="textarea" className="msg" onChange={(e) => handleMessageChange(e)}  name="message" placeholder="Escribe tu mensaje"></Input>
+                            <Input type="textarea" className="msg" onChange={(e) => handleMessageChange(e)} value={message} name="message" placeholder="Escribe tu mensaje"></Input>
                         </div>
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#fafafa", width: "10vw", marginLeft: "8px"}}>
-                           <i onClick={(e) => handleSubmitMessage (e)} className="fas fa-paper-plane"><button style={{display: "none"}}></button></i>
+                           <i onClick={(e) => defineEmisorReceptor (e)} className="fas fa-paper-plane"><button style={{display: "none"}}></button></i>
                         </div>
                     </Form>
                 </Col>
