@@ -12,6 +12,7 @@ import './../styles/matches.css';
 function Matches() {
 
     const [ input, setInput ] = useState("");
+    const [ noMatches, setNoMatches ] = useState(false);
     const [ userInfo, setUserInfo ] = useState();
     const [ user, setUser ] = useState();
     const [ converses, setConverses] = useState([{}]);
@@ -64,10 +65,15 @@ async function filterConverses (id, users, converses) {
         const result2 = await getAllUsers();
         const body2 = await result2.data;
         const result3 = await getAllConverses(id);
+        if (result3) {
         const body3 = await result3.data;
         setUserInfo(body);
         const filterUserOut = body2.filter(el => el.id !== body.id);
         filterConverses(id, filterUserOut, body3)
+        } else {
+            setNoMatches(true)
+        }
+        
     }, [])
 
     const updateInput = async (input) => {
@@ -99,7 +105,10 @@ async function filterConverses (id, users, converses) {
                         input={input}
                         updateInput={updateInput}
                     />
+                    {!noMatches ? 
                     <UserList converses={converses} />
+                    : <p>Aún no tienes matches disponibles.</p>
+                    }
     
             </Row>
             <NavBar/>

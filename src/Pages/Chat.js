@@ -55,7 +55,7 @@ let fetchData = useCallback(async (id) => {
         const body = await result.data;
         setAllMessages(body);
     } else {
-        setAllMessages([{}])
+        setAllMessages([])
     }
 }, [conversation])
 
@@ -134,7 +134,7 @@ const toggle = () => setDropdownOpen(prevState => !prevState)
     return (
         <Container fluid={true} className="chat-container">
             <Row>
-                <Col xs="12">
+                <Col xs="12" >
                  <div className="chat-flex">
                     <p className="chat-title">Conversación con {props.location.dades.nom}</p>
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -150,13 +150,16 @@ const toggle = () => setDropdownOpen(prevState => !prevState)
                 </div>
                 </Col>
                 <Col xs="12">
-                  {allMessages.map(el => {
+                {allMessages.length === 0 ? null : 
+                    allMessages.map(el => {
                       return (
                       <div key={el.id} className={el.useridemisor === user.id ? "chat-user" : "chat-receptor"}>
                           <p style={{margin: "2px"}}>{el.message}</p>
                       </div>
                       )
-                  })}
+                  })
+                }
+                  
                      <div ref={scrollRef}></div>
                 
                 </Col>
