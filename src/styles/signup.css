@@ -40,3 +40,14 @@
     width: 250px !important;
     height: 60px !important;
 }
+
+input[type=text] {
+    color: #fafafa;
+  }
+
+input[type=number] {
+    color: #fafafa;
+  }
+input[type=password] {
+    color: #FF4655;
+  }
